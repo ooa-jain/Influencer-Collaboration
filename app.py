@@ -133,4 +133,5 @@ def api_clear():
 
 
 if __name__ == "__main__":
+    # Dev server – production uses Gunicorn (see Procfile: --workers 4 --threads 50)
     app.run(debug=True, host="0.0.0.0", port=5000)

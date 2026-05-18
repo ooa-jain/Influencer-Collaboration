@@ -45,8 +45,8 @@
     background: linear-gradient(135deg, var(--dark) 0%, #2D1B00 60%, #1A3D2E 100%);
     padding: 60px 32px 80px; text-align: center; position: relative; overflow: hidden;
   }
-  .form-hero::before { content: '🥭'; font-size: 120px; opacity: 0.06; position: absolute; right: -20px; top: -20px; transform: rotate(20deg); }
-  .form-hero::after { content: '🥭'; font-size: 80px; opacity: 0.06; position: absolute; left: 10px; bottom: -10px; transform: rotate(-15deg); }
+  .form-hero::before { content: ''; }
+  .form-hero::after { content: ''; }
   .form-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--mango-light); line-height: 1.15; margin-bottom: 12px; }
   .form-hero .subtitle { color: rgba(255,255,255,0.65); font-size: 1rem; font-weight: 300; margin-bottom: 6px; }
   .form-hero .badge-project { display: inline-block; background: rgba(255,140,0,0.15); border: 1px solid rgba(255,140,0,0.4); color: var(--mango-light); padding: 4px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 20px; }
@@ -122,7 +122,7 @@
 <body>
 
 <nav class="top-nav">
-  <div class="nav-brand"><span>🥭</span> Influencer Collaboration Form</div>
+  <div class="nav-brand">Influencer Collaboration Form</div>
   <div>
     <a href="/admin" class="btn-nav filled">📊 Admin Dashboard</a>
   </div>
@@ -131,11 +131,11 @@
 <div class="form-hero">
   <div class="badge-project">University Experiential Learning Project</div>
   <h1>Influencer Collaboration Form</h1>
-  <p class="subtitle">Join our mango marketing campaign — let's grow together! 🥭</p>
+  <p class="subtitle">Join our mango marketing campaign — let's grow together!</p>
   <div class="progress-bar-wrap">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-  <p class="progress-label" id="progressLabel">Section 1 of 3</p>
+  <p class="progress-label" id="progressLabel">Section 1 of 2</p>
 </div>
 
 <div class="form-container">
@@ -268,7 +268,7 @@
 
     <div class="form-nav">
       <div></div>
-      <button class="btn-next" onclick="goToSection(2)">Next: Social Media →</button>
+      <button class="btn-next" onclick="goToSection(2)">Next: Social Media & Content →</button>
     </div>
   </div>
 
@@ -296,16 +296,11 @@
       </div>
       <div class="field-group">
         <label>Total Followers / Subscribers <span class="req">*</span></label>
-        <input type="text" id="f_followers" placeholder="e.g. 25,000">
+        <input type="number" id="f_followers" placeholder="e.g. 25000" min="0">
         <div class="error-msg" id="err_followers">Please enter your follower count</div>
       </div>
     </div>
 
-    <div class="field-group">
-      <label>Where do most of your followers live? <span class="req">*</span></label>
-      <input type="text" id="f_audience_loc" placeholder="e.g. Bangalore, Mumbai, Delhi">
-      <div class="error-msg" id="err_audience_loc">Please enter your audience location</div>
-    </div>
 
     <div class="field-group">
       <label>Which type of post gets the most views and link clicks? <span class="req">*</span></label>
@@ -343,79 +338,7 @@
 
     <div class="form-nav">
       <button class="btn-prev" onclick="goToSection(1)">← Back</button>
-      <button class="btn-next" onclick="goToSection(3)">Next: Rates & Details →</button>
-    </div>
-  </div>
-
-  <!-- SECTION 3 -->
-  <div class="section-card" id="sec3">
-    <div class="section-header">
-      <div class="section-icon">💰</div>
-      <div>
-        <div class="section-title">Rates & Collaboration Details</div>
-        <div class="section-desc">Help us understand your pricing and collaboration preferences</div>
-      </div>
-    </div>
-
-    <div class="field-group">
-      <label>Are you okay sharing post insights screenshot after campaign? <span class="req">*</span></label>
-      <div class="options-group horizontal">
-        <label class="option-item" onclick="selectRadio(this,'f_insights','Yes')"><input type="radio" name="insights"><span class="radio-dot"></span> Yes</label>
-        <label class="option-item" onclick="selectRadio(this,'f_insights','No')"><input type="radio" name="insights"><span class="radio-dot"></span> No</label>
-        <label class="option-item" onclick="selectRadio(this,'f_insights','Maybe')"><input type="radio" name="insights"><span class="radio-dot"></span> Maybe</label>
-      </div>
-      <input type="hidden" id="f_insights">
-      <div class="error-msg" id="err_insights">Please select an option</div>
-    </div>
-
-    <div class="field-group">
-      <label>Are you okay if we run paid ads using your video?</label>
-      <div class="options-group horizontal">
-        <label class="option-item" onclick="selectRadio(this,'f_paidads','Yes')"><input type="radio" name="paidads"><span class="radio-dot"></span> Yes</label>
-        <label class="option-item" onclick="selectRadio(this,'f_paidads','No')"><input type="radio" name="paidads"><span class="radio-dot"></span> No</label>
-        <label class="option-item" onclick="selectRadio(this,'f_paidads','Let\'s discuss')"><input type="radio" name="paidads"><span class="radio-dot"></span> Let's discuss</label>
-      </div>
-      <input type="hidden" id="f_paidads">
-    </div>
-
-    <div class="field-group">
-      <label>Your charges for 1 Video (Reel/Short) <span class="req">*</span></label>
-      <input type="text" id="f_charges" placeholder="e.g. ₹5,000 per reel">
-      <div class="error-msg" id="err_charges">Please enter your charges</div>
-    </div>
-
-    <div class="field-row">
-      <div class="field-group">
-        <label>Discount package for 1–2 months collaboration? <span class="req">*</span></label>
-        <div class="options-group">
-          <label class="option-item" onclick="selectRadio(this,'f_discount','Yes')"><input type="radio" name="discount"><span class="radio-dot"></span> Yes</label>
-          <label class="option-item" onclick="selectRadio(this,'f_discount','No')"><input type="radio" name="discount"><span class="radio-dot"></span> No</label>
-          <label class="option-item" onclick="selectRadio(this,'f_discount','Maybe')"><input type="radio" name="discount"><span class="radio-dot"></span> Maybe</label>
-        </div>
-        <input type="hidden" id="f_discount">
-        <div class="error-msg" id="err_discount">Please select an option</div>
-      </div>
-      <div class="field-group">
-        <label>Open to base fee + commission per sale? <span class="req">*</span></label>
-        <div class="options-group">
-          <label class="option-item" onclick="selectRadio(this,'f_commission','Yes')"><input type="radio" name="commission"><span class="radio-dot"></span> Yes</label>
-          <label class="option-item" onclick="selectRadio(this,'f_commission','No')"><input type="radio" name="commission"><span class="radio-dot"></span> No</label>
-          <label class="option-item" onclick="selectRadio(this,'f_commission','Maybe')"><input type="radio" name="commission"><span class="radio-dot"></span> Maybe</label>
-        </div>
-        <input type="hidden" id="f_commission">
-        <div class="error-msg" id="err_commission">Please select an option</div>
-      </div>
-    </div>
-
-    <div class="field-group">
-      <label>Full Shipping Address (so we can send you sample mangoes! 🥭) <span class="req">*</span></label>
-      <textarea id="f_address" placeholder="House No., Street, Area, City, State, PIN Code"></textarea>
-      <div class="error-msg" id="err_address">Please enter your shipping address</div>
-    </div>
-
-    <div class="form-nav">
-      <button class="btn-prev" onclick="goToSection(2)">← Back</button>
-      <button class="btn-submit" id="submitBtn" onclick="submitForm()">🥭 Submit Application</button>
+      <button class="btn-submit" id="submitBtn" onclick="submitForm()">Submit Application</button>
     </div>
   </div>
 
@@ -424,7 +347,7 @@
     <div class="success-icon">🎉</div>
     <h2>You're in the mix!</h2>
     <p>Your application has been received successfully.<br>
-    We'll review your profile and get back to you soon. Get ready for some mangoes! 🥭</p>
+    We'll review your profile and get back to you soon.</p>
     <button class="btn-another" onclick="resetForm()">Submit another response</button>
   </div>
 
@@ -434,7 +357,7 @@
 
 <script>
 let currentSection = 1;
-const totalSections = 3;
+const totalSections = 2;
 const checkboxState = {};
 
 function goToSection(n) {
@@ -500,13 +423,9 @@ function validateSection(n) {
        & req('f_dept','err_dept') & req('f_course','err_course') & req('f_usn','err_usn');
   } else if (n === 2) {
     ok = req('f_social','err_social') & req('f_content_type','err_content_type')
-       & req('f_followers','err_followers') & req('f_audience_loc','err_audience_loc')
+       & req('f_followers','err_followers')
        & req('f_post_type','err_post_type') & req('f_engagement','err_engagement')
        & req('f_autoreply','err_autoreply');
-  } else if (n === 3) {
-    ok = req('f_insights','err_insights') & req('f_charges','err_charges')
-       & req('f_discount','err_discount') & req('f_commission','err_commission')
-       & req('f_address','err_address');
   }
   return !!ok;
 }
@@ -514,7 +433,7 @@ function validateSection(n) {
 function g(id) { return document.getElementById(id).value.trim(); }
 
 async function submitForm() {
-  if (!validateSection(3)) return;
+  if (!validateSection(2)) return;
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Submitting…';
@@ -524,12 +443,9 @@ async function submitForm() {
     location: g('f_location'), campus: g('f_campus'), ugpg: g('f_ugpg'),
     dept: g('f_dept'), course: g('f_course'),
     social: g('f_social'), content_type: g('f_content_type'),
-    followers: g('f_followers'), audience_loc: g('f_audience_loc'),
+    followers: g('f_followers'),
     post_type: g('f_post_type'), engagement: g('f_engagement'),
-    autoreply: g('f_autoreply'), insights: g('f_insights'),
-    paidads: g('f_paidads'), charges: g('f_charges'),
-    discount: g('f_discount'), commission: g('f_commission'),
-    address: g('f_address')
+    autoreply: g('f_autoreply')
   };
 
   try {
@@ -540,13 +456,13 @@ async function submitForm() {
     });
     const data = await res.json();
     if (data.ok) {
-      document.getElementById('sec3').classList.remove('active');
+      document.getElementById('sec2').classList.remove('active');
       document.getElementById('successCard').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       showToast('❌ Submission failed. Please try again.', 'error');
       btn.disabled = false;
-      btn.textContent = '🥭 Submit Application';
+      btn.textContent = 'Submit Application';
     }
   } catch (e) {
     showToast('❌ Network error. Please try again.', 'error');
@@ -564,7 +480,7 @@ function resetForm() {
   Object.keys(checkboxState).forEach(k => checkboxState[k] = new Set());
   const btn = document.getElementById('submitBtn');
   btn.disabled = false;
-  btn.textContent = '🥭 Submit Application';
+  btn.textContent = 'Submit Application';
   currentSection = 1;
   document.getElementById('successCard').classList.remove('active');
   document.getElementById('sec1').classList.add('active');
