@@ -118,9 +118,6 @@
             <th>#</th><th>Timestamp</th><th>Full Name</th><th>USN</th><th>Email</th>
             <th>Phone</th><th>Location</th><th>Campus</th><th>UG/PG</th><th>Department</th>
             <th>Course</th><th>Social Profile</th><th>Content Type</th><th>Followers</th>
-            <th>Audience Location</th><th>Best Post Type</th><th>Engagement%</th>
-            <th>Auto-Reply</th><th>Share Insights</th><th>Paid Ads</th>
-            <th>Charges</th><th>Discount</th><th>Commission</th><th>Shipping Address</th>
             <th>🗑</th>
           </tr>
         </thead>
@@ -141,8 +138,7 @@
 let allResponses = [];
 
 const COLS = ['name','usn','email','phone','location','campus','ugpg','dept','course',
-  'social','content_type','followers','audience_loc','post_type','engagement',
-  'autoreply','insights','paidads','charges','discount','commission','address'];
+  'social','content_type','followers'];
 
 async function loadData() {
   document.getElementById('loadingState').style.display = 'block';
@@ -228,26 +224,20 @@ function exportToExcel() {
   if (allResponses.length === 0) { showToast('⚠ No responses to export!', 'info'); return; }
 
   const headers = ['#','Timestamp','Full Name','USN','Email','Phone','Location','Campus',
-    'UG/PG','Department','Course','Social Profile','Content Type','Followers',
-    'Audience Location','Best Post Type','Engagement Rate (%)','Auto-Reply DMs',
-    'Share Insights','Paid Ads OK','Charges (1 Reel)','Discount Package',
-    'Commission Model','Shipping Address'];
+    'UG/PG','Department','Course','Social Profile','Content Type','Followers'];
 
   const rows = allResponses.map((r, i) => [
     i+1,
     r.timestamp ? new Date(r.timestamp).toLocaleString('en-IN') : '',
     r.name, r.usn, r.email, r.phone, r.location, r.campus,
-    r.ugpg, r.dept, r.course, r.social, r.content_type, r.followers,
-    r.audience_loc, r.post_type, r.engagement, r.autoreply, r.insights,
-    r.paidads, r.charges, r.discount, r.commission, r.address
+    r.ugpg, r.dept, r.course, r.social, r.content_type, r.followers
   ]);
 
   const wb = XLSX.utils.book_new();
   const ws = XLSX.utils.aoa_to_sheet([headers, ...rows]);
   ws['!cols'] = [
     {wch:4},{wch:20},{wch:20},{wch:14},{wch:26},{wch:14},{wch:12},{wch:30},
-    {wch:7},{wch:36},{wch:18},{wch:32},{wch:18},{wch:12},
-    {wch:24},{wch:20},{wch:14},{wch:14},{wch:14},{wch:12},{wch:20},{wch:16},{wch:16},{wch:36}
+    {wch:7},{wch:36},{wch:18},{wch:32},{wch:18},{wch:12}
   ];
   XLSX.utils.book_append_sheet(wb, ws, 'Responses');
 
@@ -261,9 +251,7 @@ function exportToExcel() {
     ['Bangalore', allResponses.filter(r => r.location === 'Bangalore').length],
     ['Kochi', allResponses.filter(r => r.location === 'Kochi').length],
     ['UG Students', allResponses.filter(r => r.ugpg === 'UG').length],
-    ['PG Students', allResponses.filter(r => r.ugpg === 'PG').length],
-    ['Open to Commission', allResponses.filter(r => r.commission === 'Yes').length],
-    ['Use Auto-Reply DMs', allResponses.filter(r => r.autoreply === 'Yes').length],
+    ['PG Students', allResponses.filter(r => r.ugpg === 'PG').length]
   ];
   const ws2 = XLSX.utils.aoa_to_sheet(summaryData);
   ws2['!cols'] = [{wch:30},{wch:20}];
